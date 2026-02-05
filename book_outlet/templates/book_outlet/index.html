@@ -6,6 +6,10 @@
     <title>Document</title>
   </head>
   <body>
-    Hello World
+    <ul>
+      {% for book in books %}
+      <li>{{ book.title }} (Rating: {{ book.rating }})</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
