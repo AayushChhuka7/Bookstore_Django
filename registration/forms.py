@@ -1,5 +1,6 @@
 from django import forms
 from .models import Registration    
+import re
 
 class RegistrationForm(forms.Form):
     name = forms.CharField(
@@ -16,5 +17,22 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput,
         error_messages={'required': 'Password is required'}
+
+
     )
-   
+    def clean_password(self):
+        """Validate password strength"""
+        password = self.cleaned_data.get('password')
+        # At least 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 symbol
+        password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{8,}$'
+        if not re.match(password_regex, password):
+            raise forms.ValidationError(
+                'Password must be at least 8 characters long and include '
+                'one uppercase letter, one lowercase letter, one number, '
+                'and one symbol'
+            )
+        # if not len(password)>=8:
+        #     raise forms.ValidationError{
+        #         'must be atleast 8 char long'
+        #     }
+        return password
