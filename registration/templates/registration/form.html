@@ -6,12 +6,10 @@
     <title>Document</title>
   </head>
   <body>
-    <form method="post" action="{% url 'form' %}">
-      {% csrf_token %}
-     
-     
-     {{ form.as_p }}
+    <form method="post" action="{% url 'registration:form' %}">
+      {% csrf_token %} {{ form.as_p }}
 
-    <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>

@@ -1,6 +1,6 @@
 from django import forms
 from .models import Registration    
-import re
+
 
 class RegistrationForm(forms.Form):
     name = forms.CharField(
