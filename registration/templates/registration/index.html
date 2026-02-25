@@ -1,0 +1,9 @@
+<html>
+  <body>
+    <h1>list of user</h1>
+    <h2>{{user_input|safe}}</h2>
+    {% for u in users%}
+    <h2>{{ u.name|safe}}</h2>
+    {% endfor %} &lt;scripr&gt;
+  </body>
+</html>
